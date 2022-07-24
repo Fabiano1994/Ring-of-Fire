@@ -1,0 +1,18 @@
+.player {
+    width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: aquamarine;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+
+    span {
+        font-size: 18px;
+        margin-left: 8px;
+    }
+
+    img {
+        border-radius: 100%;
+    }
+}
