@@ -3,7 +3,7 @@
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: aquamarine;
+    background-color: #69f0af66;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
 
@@ -15,4 +15,8 @@
     img {
         border-radius: 100%;
     }
+}
+
+.player-active {
+    background-color: #69F0AE;
 }
