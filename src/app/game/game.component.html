@@ -1,5 +1,5 @@
-<app-player *ngFor="let player of game.players; let i = index;" [ngStyle]="{'top.px': 80 + (i * 80)}"
-    [playerActive]="i == game.currentPlayer" [name]="player" class="player-position"></app-player>
+<app-player *ngFor="let player of game?.players; let i = index;" [ngStyle]="{'top.px': 80 + (i * 80)}"
+    [playerActive]="i == game?.currentPlayer" [name]="player" class="player-position"></app-player>
 
 <div class="field">
 
@@ -10,7 +10,7 @@
         <img (click)="takeCard()" class="top-card" style="right: 25px" src="assets/img/playing_cards/card_cover.png">
 
         <!-- Stack for played cards -->
-        <img *ngFor="let card of game.playedCards" class="played-card" src="assets/img/playing_cards/{{ card }}.png">
+        <img *ngFor="let card of game?.playedCards" class="played-card" src="assets/img/playing_cards/{{ card }}.png">
         <!-- Current card animation -->
         <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right: 25px"
             src="assets/img/playing_cards/{{ currentCard }}.png">
@@ -22,3 +22,10 @@
 <button mat-fab color="accent" (click)="openDialog()" class="button-add">
     <mat-icon>add</mat-icon>
 </button>
+
+<input [(ngModel)]="todotext" type="text"> 
+<!-- "ngModel" connects the variable "todotext" from the app.component.ts -->
+<!-- <button (click)="addTodo()">click</button> -->
+<ul>
+<li *ngFor="let games of games$ | async"> {{ games['games'] }}</li>
+</ul>

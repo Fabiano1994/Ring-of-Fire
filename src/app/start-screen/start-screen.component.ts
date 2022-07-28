@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Firestore, collectionData, collection, setDoc, doc, getDoc, CollectionReference } from '@angular/fire/firestore';
+import { Game } from 'src/models/game';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-start-screen',
@@ -7,15 +11,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./start-screen.component.scss']
 })
 export class StartScreenComponent implements OnInit {
+  games$: Observable<any>;
+  game: Game;
 
-  constructor(private router: Router) { } //private -> just this component, public -> all components
+  constructor(private route: ActivatedRoute, private firestore: Firestore, private router: Router) {
+    const coll = collection(firestore, 'games');
+    this.games$ = collectionData(coll);
 
-  ngOnInit(): void {
+    this.games$.subscribe((newGames) => {
+      this.game = newGames;
+    })
   }
 
-  newGame() {
-    // Start Game
-    this.router.navigateByUrl('/game');
+  ngOnInit(): void {
+
+  }
+
+  async newGame() {
+    const coll = collection(this.firestore, 'games');
+    this.route.params.subscribe(async (params) => {
+      this.game = new Game();
+      const docRef = doc(coll);
+      await setDoc(docRef, { game: this.game.toJson() });
+
+      console.log(docRef.id);
+      this.router.navigateByUrl('/game/' + docRef.id);
+    })
   }
 
 }
