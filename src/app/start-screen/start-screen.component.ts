@@ -32,7 +32,7 @@ export class StartScreenComponent implements OnInit {
     this.route.params.subscribe(async (params) => {
       this.game = new Game();
       const docRef = doc(coll);
-      await setDoc(docRef, { game: this.game.toJson() });
+      await setDoc(docRef, { game: this.game.toJson() }); // pushes array to game
 
       console.log(docRef.id);
       this.router.navigateByUrl('/game/' + docRef.id);

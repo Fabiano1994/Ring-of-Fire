@@ -3,6 +3,8 @@ export class Game {
     public stack: string[] = [];
     public playedCards: string[] = [];
     public currentPlayer: number = 0;
+    public pickCardAnimation = false;
+    public currentCard: string = '';
 
     constructor() {
         for (let i = 1; i < 14; i++) {
@@ -16,16 +18,18 @@ export class Game {
     
     }
 
-    public toJson(){
+    public toJson(){ // saves array and returns it to Json
         return {
             players: this.players,
             stack: this.stack,
             playedCards: this.playedCards,
-            currentPlayer: this.currentPlayer
+            currentPlayer: this.currentPlayer,
+            pickCardAnimation: this.pickCardAnimation,
+            currentCard: this.currentCard
         };
     }
 
-    shuffle(stack) {
+    shuffle(stack) { // shuffles the cards
         let currentIndex = stack.length,  randomIndex;
       
         // While there remain elements to shuffle.
