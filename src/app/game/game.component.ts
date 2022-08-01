@@ -86,7 +86,7 @@ export class GameComponent implements OnInit {
     const coll = collection(this.firestore, 'games')
     console.log(this.game);
     const docRef = doc(coll, this.gameId);
-    await setDoc(docRef, { game: this.game });
+    await setDoc(docRef, { game: this.game }); // saves the document with right id and changes game > this game
   }
 
 
